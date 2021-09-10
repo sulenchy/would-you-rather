@@ -1,4 +1,3 @@
-import { FETCH_QUESTIONS } from "./questions";
 import { _getUsers } from '../_DATA';
 
 export const FETCH_USERS = 'FETCH_USERS';

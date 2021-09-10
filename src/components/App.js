@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Button } from 'reactstrap'
 import { connect } from 'react-redux';
-import { handleFetchUsers } from './actions/users'
+import { handleFetchUsers } from '../actions/users'
 
 function App(props) {
 
@@ -16,6 +16,7 @@ function App(props) {
 
       <br />
       <Button color="danger">try out</Button>
+      
     </div>
   );
 }
