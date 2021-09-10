@@ -1,5 +1,15 @@
+import React, { useEffect } from 'react';
 import { Button } from 'reactstrap'
-function App() {
+import { connect } from 'react-redux';
+import { handleFetchUsers } from './actions/users'
+
+function App(props) {
+
+  useEffect(() => {
+    const { dispatch } = props;
+    dispatch(handleFetchUsers());
+  })
+
   return (
     <div>
       Would you rather... Things are getting started
@@ -10,4 +20,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect()(App);
