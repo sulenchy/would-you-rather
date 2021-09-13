@@ -40,7 +40,7 @@ function Login({ users, dispatch }) {
                 Object.keys(users).map(id => <option key={ id } value={ users[id].id }>{ users[id].name }</option>)
               }
             </select>
-            <button type="submit" className="w-full my-2 py-3 text-white rounded-md  bg-green-800">Message</button>
+            <button type="submit" className="w-full my-2 py-3 text-white rounded-md  bg-green-800" disabled={ userId === "" }>Message</button>
           </form>
         </div>
       </div>
