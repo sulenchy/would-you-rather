@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { PropTypes } from "prop-types";
 import { connect, useSelector } from "react-redux";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import PrivateRoute from "./PrivateRoute";
 import { handleFetchUsers } from "../actions/users";
 import { selectAuthedUser } from "../selectors";
 import Login from "./Login";
@@ -18,9 +19,20 @@ function App(props) {
   return (
     <div className='col'>
       <Navbar />
-      <Route exact path="/">
-        { authedUser ? <Home />  : <Login /> }
-      </Route>
+      <Switch>
+        <PrivateRoute exact path="/home">
+          <Home />
+        </PrivateRoute>
+        <PrivateRoute exact path="/poll">
+          <div>Polling</div>
+        </PrivateRoute>
+        <Route exact path="/">
+          <Login />
+        </Route>
+        <Route path="*">
+          <div className="text-center text-lg"><h1>Page not found!!</h1></div>
+        </Route>
+      </Switch>
     </div>
   );
 }
@@ -28,6 +40,5 @@ function App(props) {
 App.propTypes ={
   dispatch: PropTypes.func
 };
-
 
 export default connect()(App);
