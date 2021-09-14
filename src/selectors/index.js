@@ -11,4 +11,3 @@ export const selectUsersWithMinInfo = createSelector(selectUsers, (users) => {
   }, {});
   return formattedUsers;
 });
-

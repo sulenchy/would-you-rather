@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { selectUsersWithMinInfo } from "../selectors";
+import { useHistory } from "react-router-dom";
 import imgReact from "../images/reactjs.jpeg";
 import { handleSetUser } from "../actions/authedUser";
 
 
 function Login({ users, dispatch }) {
   const [userId, setUserId] = useState("");
+  const history = useHistory();
 
   const handlChange = (event) => {
     event.preventDefault();
@@ -16,8 +18,14 @@ function Login({ users, dispatch }) {
   };
 
   const handleSubmit = event => {  
-    event.preventDefault();  
-    dispatch(handleSetUser(users[userId]));
+    event.preventDefault();
+    if(userId) {
+      dispatch(handleSetUser(users[userId]));
+      history.push("/home");
+      return;
+    }
+    // Todo: consider replacing the alert with a popup or modal
+    return alert("Sorry, looks like you have not selected a user. Please, select a user.");
   };
 
   return (
@@ -40,7 +48,7 @@ function Login({ users, dispatch }) {
                 Object.keys(users).map(id => <option key={ id } value={ users[id].id }>{ users[id].name }</option>)
               }
             </select>
-            <button type="submit" className="w-full my-2 py-3 text-white rounded-md  bg-green-800">Message</button>
+            <button type="submit" className="w-full my-2 py-3 text-white rounded-md  bg-green-800">Login</button>
           </form>
         </div>
       </div>
