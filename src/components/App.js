@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { connect, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
