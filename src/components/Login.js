@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
+import Select from "react-select";
 import { selectUsersWithMinInfo } from "../selectors";
 import { useHistory } from "react-router-dom";
 import imgReact from "../images/reactjs.jpeg";
@@ -11,11 +12,7 @@ function Login({ users, dispatch }) {
   const [userId, setUserId] = useState("");
   const history = useHistory();
 
-  const handlChange = (event) => {
-    event.preventDefault();
-    const{ target: { value } } = event;
-    setUserId(value);
-  };
+  const handleChange = (idx) => setUserId(idx.value);
 
   const handleSubmit = event => {  
     event.preventDefault();
@@ -27,6 +24,9 @@ function Login({ users, dispatch }) {
     // Todo: consider replacing the alert with a popup or modal
     return alert("Sorry, looks like you have not selected a user. Please, select a user.");
   };
+
+
+  const options = Object.keys(users).map(id => ({ value: users[id].id, label:<><img className="w-7 inline" src={users[id].avatarURL} /> <span>{users[id].name}</span> </>}));
 
   return (
     <div className="flex flex-col mx-auto rounded-xl shadow-md space-y-2 items-center w-6/12">
@@ -42,12 +42,10 @@ function Login({ users, dispatch }) {
 
         <div className="w-full space-y-0.5">
           <form onSubmit={ handleSubmit }>
-            <select value={ userId } onChange={ (event) => handlChange(event) } className="w-full border-gray-200 border-2 h-12 px-5">
-              <option>Select a user</option>
-              {
-                Object.keys(users).map(id => <option key={ id } value={ users[id].id }>{ users[id].name }</option>)
-              }
-            </select>
+            <Select name="userSelect"
+              onChange={ handleChange }
+              options={ options }
+            />  
             <button type="submit" className="w-full my-2 py-3 text-white rounded-md  bg-green-800">Login</button>
           </form>
         </div>
@@ -59,6 +57,8 @@ function Login({ users, dispatch }) {
 Login.propTypes = {
   users: PropTypes.object,
   dispatch: PropTypes.func,
+  isDisabled: PropTypes.bool,
+  innerProps: PropTypes.object
 };
 
 function mapStateToProps(state) {

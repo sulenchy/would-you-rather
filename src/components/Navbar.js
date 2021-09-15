@@ -30,7 +30,7 @@ function Navbar({ dispatch }) {
           authedUser &&
           <section className="w-3/12">
             <h6 className="inline m-4">Hello, { authedUser && authedUser.name }</h6>
-            <li className="inline m-4 hover:bg-green-600" onClick={ handleLogout }><img className="inline" src={ authedUser.avatarURL && defaultAvatarURL } />Logout</li>
+            <li className="inline m-4 hover:bg-green-600" onClick={ handleLogout }><img className="w-1/12 inline" src={ authedUser.avatarURL } /> Logout</li>
           </section>
         }
         
