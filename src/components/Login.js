@@ -25,7 +25,6 @@ function Login({ users, dispatch }) {
     return alert("Sorry, looks like you have not selected a user. Please, select a user.");
   };
 
-
   const options = Object.keys(users).map(id => ({ value: users[id].id, label:<><img className="w-7 inline" src={users[id].avatarURL} /> <span>{users[id].name}</span> </>}));
 
   return (
@@ -57,8 +56,6 @@ function Login({ users, dispatch }) {
 Login.propTypes = {
   users: PropTypes.object,
   dispatch: PropTypes.func,
-  isDisabled: PropTypes.bool,
-  innerProps: PropTypes.object
 };
 
 function mapStateToProps(state) {
