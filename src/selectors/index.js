@@ -31,7 +31,10 @@ export const groupQuestionById = id => createSelector(selectAllQuestions, (quest
       unansweredQuestions.push(questions[questionId]);
     }
   });
-  return { answeredQuestions, unansweredQuestions };
+  return { 
+    answeredQuestions: answeredQuestions.sort((a,b) => b.timestamp - a.timestamp),
+    unansweredQuestions: unansweredQuestions.sort((a,b) => b.timestamp - a.timestamp)
+  };
 });
 
 /**
