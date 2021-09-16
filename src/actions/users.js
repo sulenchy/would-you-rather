@@ -2,6 +2,7 @@ import { _getUsers } from "../_DATA";
 
 export const FETCH_USERS = "FETCH_USERS";
 export const SET_USER = "SET_USER";
+export const POLL =  "POLL";
 
 function fetchUsers (users) {
   return {

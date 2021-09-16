@@ -17,13 +17,16 @@ function App(props) {
   }, [props]);
 
   return (
-    <div className='col'>
+    <div className='col mx-auto'>
       <Navbar />
       <Switch>
         <PrivateRoute exact path="/home">
           <Home />
         </PrivateRoute>
-        <PrivateRoute exact path="/poll">
+        <PrivateRoute exact path="/new">
+          <div>New  question</div>
+        </PrivateRoute>
+        <PrivateRoute path="/poll/:id">
           <div>Polling</div>
         </PrivateRoute>
         <Route exact path="/">
