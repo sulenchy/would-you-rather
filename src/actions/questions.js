@@ -1,7 +1,7 @@
 import { _getQuestions, _saveQuestion } from "../_DATA";
 
 export const FETCH_QUESTIONS = "FETCH_QUESTIONS";
-export const ADD_NEW = "ADD_New";
+export const ADD_NEW_QUESTION = "ADD_NEW_QUESTION";
 
 function fetchQuestions(questions) {
   return {
@@ -18,7 +18,7 @@ export function handleFetchQuestions() {
 
 function addNewQuestion(question) {
   return {
-    type: ADD_NEW,
+    type: ADD_NEW_QUESTION,
     question
   };
 }
