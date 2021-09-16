@@ -7,8 +7,6 @@ export default function questions(state = {}, action){
       ...state,
       ...action.questions
     };
-  case GET_QUESTION:
-    return state[action.id] ? state[action.id] : null;
   case ADD_NEW:
     return {
       ...state,
