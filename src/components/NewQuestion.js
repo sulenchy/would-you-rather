@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
 import { useSelector, connect } from "react-redux";
 import { handleAddNew } from "../actions/questions";
 import { _saveQuestion } from "../_DATA";
@@ -10,6 +11,7 @@ import { selectAuthedUser } from "../selectors";
 function NewQuestion({dispatch}){
   const optionOneRef = useRef("");
   const optionTwoRef = useRef("");
+  const history = useHistory();
   const authedUser = useSelector(selectAuthedUser);
   
   const handleSubmit = (event) => {
@@ -17,9 +19,13 @@ function NewQuestion({dispatch}){
     const optionOneText = optionTwoRef.current.value;
     const optionTwoText = optionTwoRef.current.value;
     const newQuestion =  { optionOneText, optionTwoText, author: authedUser.id };
-    dispatch(handleAddNew(newQuestion));
-    optionTwoRef.current.value = "";
-    optionOneRef.current.value = "";
+    if (optionTwoText && optionOneText) {
+      dispatch(handleAddNew(newQuestion));
+      optionTwoRef.current.value = "";
+      optionOneRef.current.value = "";
+      return history.push("/home");
+    }
+    alert("Please, enter some text in both option one and option two")
   };
 
   return(
