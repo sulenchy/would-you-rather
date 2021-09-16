@@ -20,11 +20,13 @@ function Navbar({ dispatch }) {
 
   return (
     <div>
-      <nav className="w-full h-12 mb-20 flex justify-center border-b-4 border-green-600 items-center">
+      <nav className="w-full text-center h-12 mb-20 flex justify-center border-b-4 border-green-600 items-center">
         <ul className="w-4/12">
           <Link className="inline mx-4 hover:bg-green-600" to="/home">Home</Link>
-          { authedUser && <Link className="inline mx-4 hover:bg-green-600" to="/new">New Question</Link> }
-          <Link className="inline mx-4 hover:bg-green-600" to="/leaderboard">Leader Board</Link>
+          { authedUser && <>
+            <Link className="inline mx-4 hover:bg-green-600" to="/add">New Question</Link> 
+            <Link className="inline mx-4 hover:bg-green-600" to="/leaderboard">Leader Board</Link>
+          </>}
         </ul>
         {
           authedUser &&

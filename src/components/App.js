@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { connect, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import { handleFetchUsers } from "../actions/users";
 import { selectAuthedUser } from "../selectors";
 import Login from "./Login";
 import Navbar from "./Navbar";
 import Home from "./Home";
+import NewQuestion from "./NewQuestion";
 
 function App(props) {
   const authedUser = useSelector(selectAuthedUser);
@@ -23,8 +24,11 @@ function App(props) {
         <PrivateRoute exact path="/home">
           <Home />
         </PrivateRoute>
-        <PrivateRoute exact path="/new">
-          <div>New  question</div>
+        <PrivateRoute exact path="/add">
+          <NewQuestion />
+        </PrivateRoute>
+        <PrivateRoute exact path="/leaderboard">
+          <div>Leaderboard Page</div>
         </PrivateRoute>
         <PrivateRoute path="/poll/:id">
           <div>Polling</div>
@@ -33,7 +37,7 @@ function App(props) {
           <Login />
         </Route>
         <Route path="*">
-          <div className="text-center text-lg"><h1>Page not found!!</h1></div>
+          <Redirect to="/" />
         </Route>
       </Switch>
     </div>
