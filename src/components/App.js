@@ -9,6 +9,7 @@ import Login from "./Login";
 import Navbar from "./Navbar";
 import Home from "./Home";
 import NewQuestion from "./NewQuestion";
+import ViewPoll from "./ViewPoll";
 
 function App(props) {
   const authedUser = useSelector(selectAuthedUser);
@@ -30,8 +31,8 @@ function App(props) {
         <PrivateRoute exact path="/leaderboard">
           <div>Leaderboard Page</div>
         </PrivateRoute>
-        <PrivateRoute path="/poll/:id">
-          <div>Polling</div>
+        <PrivateRoute path="/questions/:id">
+          <ViewPoll />
         </PrivateRoute>
         <Route exact path="/">
           <Login />

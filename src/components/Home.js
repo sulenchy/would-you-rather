@@ -8,6 +8,7 @@ import { handleFetchQuestions } from "../actions/questions";
 function Card(props) {
   const { questions } = props;
   const users = useSelector(selectUsersWithMinInfo);
+
   return (
     <>
       { questions.map(question => (
@@ -20,7 +21,7 @@ function Card(props) {
             <div className="w-1/2 border-l-2 text-left p-3">
               <h4 className="font-bold pb-2">Would you rather</h4>
               <p className="font-thin pb-2 max-w-md">&#8230; {question.optionOne.text} &#8230;</p>
-              <Link to={ `/poll/${question.id}` } className="w-full py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">View Poll</Link>
+              <Link to={ `/questions/${question.id}` } className="w-full py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">View Poll</Link>
             </div>
           </div>
         </div>
@@ -57,11 +58,11 @@ function Home({ dispatch }) {
         <button className="w-1/2 h-16 tablinks border-none outline-none cursor-pointer bg-gray-400 hover:bg-gray-600 focus:bg-green-200" onClick={ event => openTab(event, "answered_questions") }>Answered Question</button>
       </div>
       <div id="unanswered_questions" className="tabcontent text-center px-12 py-6 border-red-300 border-t-0">
-        <Card questions={ unansweredQuestions } />
+        <Card questions={ unansweredQuestions } type="unanswered_questions" />
       </div>
 
       <div id="answered_questions" className="tabcontent text-center px-12 py-6 border-red-300 border-t-0 hidden">
-        <Card questions={ answeredQuestions } />
+        <Card questions={ answeredQuestions } type="answered_questions" />
       </div>
     </div>
   );
