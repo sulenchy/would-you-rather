@@ -32,7 +32,7 @@ export function handleAddNew({question, authedUser}){
   return dispatch => {
     return _saveQuestion(question).then(formattedQuestion => {
       dispatch(addNewQuestion(formattedQuestion));
-      dispatch(updateUserQuestion({ authedUser: authedUser.id, question: formattedQuestion.id }))
+      dispatch(updateUserQuestion({ authedUser: authedUser.id, question: formattedQuestion.id }));
     });
   };
 }

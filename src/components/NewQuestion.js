@@ -25,7 +25,7 @@ function NewQuestion({dispatch}){
       optionOneRef.current.value = "";
       return history.push("/home");
     }
-    alert("Please, enter some text in both option one and option two")
+    alert("Please, enter some text in both option one and option two");
   };
 
   return(
