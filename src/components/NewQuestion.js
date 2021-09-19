@@ -16,16 +16,16 @@ function NewQuestion({dispatch}){
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    const optionOneText = optionTwoRef.current.value;
+    const optionOneText = optionOneRef.current.value;
     const optionTwoText = optionTwoRef.current.value;
     const newQuestion =  { optionOneText, optionTwoText, author: authedUser.id };
     if (optionTwoText && optionOneText) {
-      dispatch(handleAddNew(newQuestion));
+      dispatch(handleAddNew({ question:newQuestion, authedUser }));
       optionTwoRef.current.value = "";
       optionOneRef.current.value = "";
       return history.push("/home");
     }
-    alert("Please, enter some text in both option one and option two")
+    alert("Please, enter some text in both option one and option two");
   };
 
   return(
