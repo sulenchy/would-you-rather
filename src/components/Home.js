@@ -8,6 +8,7 @@ import { handleFetchQuestions } from "../actions/questions";
 function Card(props) {
   const { questions } = props;
   const users = useSelector(selectUsersWithMinInfo);
+
   return (
     <>
       { questions.map(question => (
@@ -20,7 +21,7 @@ function Card(props) {
             <div className="w-1/2 border-l-2 text-left p-3">
               <h4 className="font-bold pb-2">Would you rather</h4>
               <p className="font-thin pb-2 max-w-md">&#8230; {question.optionOne.text} &#8230;</p>
-              <Link to={ `/poll/${question.id}` } className="w-full py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">View Poll</Link>
+              <Link to={ `/questions/${question.id}` } className="w-full py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">View Poll</Link>
             </div>
           </div>
         </div>

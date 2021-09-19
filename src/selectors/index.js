@@ -7,12 +7,14 @@ export const selectAuthedUser = state => state.authedUser;
 
 export const selectUsersWithMinInfo = createSelector(selectUsers, (users) => {
   const formattedUsers = Object.keys(users).reduce((acc, cur) => {
-    const { name, id, avatarURL } = users[cur];
-    acc[cur] = { name, id, avatarURL };
+    const { name, id, avatarURL, answers } = users[cur];
+    acc[cur] = { name, id, avatarURL, answers };
     return acc;
   }, {});
   return formattedUsers;
 });
+
+export const selectUserById = id => createSelector(selectUsers, users => (users[id]));
 
 export const selectQuestionById = id => createSelector(selectAllQuestions, (questions) => {
   const question = questions[id];
@@ -23,7 +25,7 @@ export const groupQuestionById = id => createSelector(selectAllQuestions, (quest
   const unansweredQuestions = [];
   const answeredQuestions = [];
   Object.keys(questions).forEach(questionId => {
-    const { optionOne,optionTwo } = questions[questionId];
+    const { optionOne, optionTwo } = questions[questionId];
     if (optionOne.votes.includes(id) || optionTwo.votes.includes(id)){
       answeredQuestions.push(questions[questionId]);
     }
@@ -37,9 +39,6 @@ export const groupQuestionById = id => createSelector(selectAllQuestions, (quest
   };
 });
 
-/**
- * get the id
- * create a function that returns two arrays(answered, unanswered)
- * 
- */
-
+export const selectOptionsForQuestion = id => createSelector(selectQuestionById(id), question => {
+  return {options : [question.optionOne, question.optionTwo], totalVoteCount: question.optionOne.votes.length + question.optionTwo.votes.length };
+});
