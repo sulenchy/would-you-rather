@@ -58,11 +58,11 @@ function Home({ dispatch }) {
         <button className="w-1/2 h-16 tablinks border-none outline-none cursor-pointer bg-gray-400 hover:bg-gray-600 focus:bg-green-200" onClick={ event => openTab(event, "answered_questions") }>Answered Question</button>
       </div>
       <div id="unanswered_questions" className="tabcontent text-center px-12 py-6 border-red-300 border-t-0">
-        <Card questions={ unansweredQuestions } type="unanswered_questions" />
+        <Card questions={ unansweredQuestions } />
       </div>
 
       <div id="answered_questions" className="tabcontent text-center px-12 py-6 border-red-300 border-t-0 hidden">
-        <Card questions={ answeredQuestions } type="answered_questions" />
+        <Card questions={ answeredQuestions } />
       </div>
     </div>
   );
