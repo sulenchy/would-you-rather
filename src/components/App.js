@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import { PropTypes } from "prop-types";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import { handleFetchUsers } from "../actions/users";
-import { selectAuthedUser } from "../selectors";
 import Login from "./Login";
 import Navbar from "./Navbar";
 import Home from "./Home";
 import NewQuestion from "./NewQuestion";
 import ViewPoll from "./ViewPoll";
+import Leaderboard from "./LeaderBoard";
 
 function App(props) {
-  const authedUser = useSelector(selectAuthedUser);
   useEffect(() => {
     const { dispatch } = props;
     dispatch(handleFetchUsers());
@@ -29,7 +28,7 @@ function App(props) {
           <NewQuestion />
         </PrivateRoute>
         <PrivateRoute exact path="/leaderboard">
-          <div>Leaderboard Page</div>
+          <Leaderboard />
         </PrivateRoute>
         <PrivateRoute path="/questions/:id">
           <ViewPoll />

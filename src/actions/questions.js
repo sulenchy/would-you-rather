@@ -1,4 +1,5 @@
 import { _getQuestions, _saveQuestion } from "../_DATA";
+import { updateUserQuestion } from "./users";
 
 export const FETCH_QUESTIONS = "FETCH_QUESTIONS";
 export const ADD_NEW_QUESTION = "ADD_NEW_QUESTION";
@@ -27,9 +28,12 @@ export function voteQuestion(vote) {
 }
 
 
-export function handleAddNew(question){
+export function handleAddNew({question, authedUser}){
   return dispatch => {
-    return _saveQuestion(question).then(formattedQuestion => dispatch(addNewQuestion(formattedQuestion)));
+    return _saveQuestion(question).then(formattedQuestion => {
+      dispatch(addNewQuestion(formattedQuestion));
+      dispatch(updateUserQuestion({ authedUser: authedUser.id, question: formattedQuestion.id }))
+    });
   };
 }
 

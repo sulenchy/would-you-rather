@@ -42,3 +42,14 @@ export const groupQuestionById = id => createSelector(selectAllQuestions, (quest
 export const selectOptionsForQuestion = id => createSelector(selectQuestionById(id), question => {
   return {options : [question.optionOne, question.optionTwo], totalVoteCount: question.optionOne.votes.length + question.optionTwo.votes.length };
 });
+
+export const selectFormattedUsers = () => createSelector(selectUsers, users => {
+  const values = Object.values(users);
+  const formattedUsers = values.reduce((acc, cur) => {
+    const totalScore = cur.questions.length + Object.keys(cur.answers).length;
+    cur.totalScore = totalScore;
+    acc.push(cur);
+    return acc;
+  }, []);
+  return formattedUsers.sort((a,b) => b.totalScore -a.totalScore);
+});
