@@ -1,4 +1,5 @@
 import { _getUsers, _saveQuestionAnswer } from "../_DATA";
+import { showLoading, hideLoading } from "react-redux-loading";
 
 export const FETCH_USERS = "FETCH_USERS";
 export const SET_USER = "SET_USER";
@@ -28,12 +29,20 @@ export function updateUserQuestion(question) {
 
 export function handleFetchUsers(){
   return (dispatch) => {
-    return _getUsers().then(users => dispatch(fetchUsers(users)));
+    dispatch(showLoading());
+    return _getUsers().then(users => {
+      dispatch(fetchUsers(users));
+      dispatch(hideLoading());
+    });
   };
 }
 
 export function handleAddAnswer(answer) {
   return dispatch => {
-    return _saveQuestionAnswer(answer).then(dispatch(addAnswer(answer)));
+    dispatch(showLoading());
+    return _saveQuestionAnswer(answer).then(() => {
+      dispatch(addAnswer(answer));
+      dispatch(hideLoading());
+    });
   };
 }
