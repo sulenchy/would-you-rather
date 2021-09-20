@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { useSelector, connect } from "react-redux";
 import { handleAddAnswer } from "../actions/users";
 import { voteQuestion } from "../actions/questions";
@@ -10,6 +10,7 @@ import { selectQuestionById, selectAuthedUser, selectOptionsForQuestion,selectUs
 function ViewPoll({ dispatch }) {
   const { id } = useParams();
   const question = useSelector(selectQuestionById(id));
+  if (!question) return <Redirect to="/404" />;
   const askedBy = useSelector(selectUserById(question.author));
   const {options, totalVoteCount } = useSelector(selectOptionsForQuestion(id));
   const author = useSelector(selectAuthedUser);
@@ -97,5 +98,7 @@ function ViewPoll({ dispatch }) {
 ViewPoll.propTypes = {
   dispatch: PropTypes.func,
 };
+
+
 
 export default connect()(ViewPoll);

@@ -3,7 +3,6 @@ import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 import { selectUsersWithMinInfo, selectAuthedUser, groupQuestionById } from "../selectors";
-import { handleFetchQuestions } from "../actions/questions";
 
 function Card(props) {
   const { questions } = props;
@@ -38,7 +37,6 @@ function Home({ dispatch }) {
   const authedUser = useSelector(selectAuthedUser);
   const {unansweredQuestions, answeredQuestions} = useSelector(groupQuestionById(authedUser.id));
   useEffect(() => {
-    dispatch(handleFetchQuestions());
     tabRef.current.focus();
   }, []);
 

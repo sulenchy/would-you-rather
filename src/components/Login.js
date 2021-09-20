@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import Select from "react-select";
@@ -10,7 +10,12 @@ import { handleSetUser } from "../actions/authedUser";
 
 function Login({ users, dispatch }) {
   const [userId, setUserId] = useState("");
+  const [prevUrl, setPrevUrl] = useState("");
   const history = useHistory();
+
+  useEffect(() => {
+    history.location.state && setPrevUrl(history.location.state.from.pathname);
+  }, []);
 
   const handleChange = (idx) => setUserId(idx.value);
 
@@ -18,7 +23,7 @@ function Login({ users, dispatch }) {
     event.preventDefault();
     if(userId) {
       dispatch(handleSetUser(users[userId]));
-      history.push("/home");
+      prevUrl ? history.push(prevUrl) : history.push("/home");
       return;
     }
     // Todo: consider replacing the alert with a popup or modal
@@ -42,7 +47,7 @@ function Login({ users, dispatch }) {
         <div className="w-full space-y-0.5">
           <form onSubmit={ handleSubmit }>
             <Select name="userSelect"
-              onChange={ handleChange }
+              onChange={ (event, idx) => handleChange(event, idx) }
               options={ options }
             />  
             <button type="submit" className="w-full my-2 py-3 text-white rounded-md  bg-green-800">Login</button>

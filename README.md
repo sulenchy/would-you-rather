@@ -6,6 +6,14 @@ In the app, users will be able to answer questions, see which questions they hav
 
 This app contains a file serving as the database called `_DATA.js`. The file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
 
+## Getting Started
+To get started, do the following:
+
+- Clone the app: Run in your terminal `git clone https://github.com/sulenchy/would-you-rather`
+- Cd into would-you-rather directory
+- Install project dependencies: Run `yarn`.
+- Run the app in dev: Run `yarn start` 
+
 ## Available Scripts
 
 In the project directory, you can run:

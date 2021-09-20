@@ -22,7 +22,7 @@ function Navbar({ dispatch }) {
     <div>
       <nav className="w-full text-center h-12 mb-20 flex justify-center border-b-4 border-green-600 items-center">
         <ul className="w-4/12">
-          <NavLink activeClassName="focus:bg-green-600" className="inline mx-4 hover:bg-green-600" exact="true" to="/home">Home</NavLink>
+          <NavLink activeClassName="focus:bg-green-600" className="inline mx-4 hover:bg-green-600" to="/home">Home</NavLink>
           { authedUser && <>
             <NavLink activeClassName="focus:bg-green-600" className="inline mx-4 hover:bg-green-600" to="/add">New Question</NavLink> 
             <NavLink activeClassName="focus:bg-green-600" className="inline mx-4 hover:bg-green-600" to="/leaderboard">Leader Board</NavLink>
