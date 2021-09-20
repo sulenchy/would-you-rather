@@ -12,6 +12,7 @@ import NewQuestion from "./NewQuestion";
 import ViewPoll from "./ViewPoll";
 import Leaderboard from "./LeaderBoard";
 import NotFound from "./NotFound";
+import LoadingBar from "react-redux-loading";
 
 function App(props) {
   useEffect(() => {
@@ -22,6 +23,7 @@ function App(props) {
 
   return (
     <div className='col mx-auto'>
+      <LoadingBar />
       <Navbar />
       <Switch>
         <PrivateRoute exact path="/home">
