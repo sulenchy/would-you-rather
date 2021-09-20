@@ -47,7 +47,7 @@ function Login({ users, dispatch }) {
         <div className="w-full space-y-0.5">
           <form onSubmit={ handleSubmit }>
             <Select name="userSelect"
-              onChange={ (event, idx) => handleChange(event, idx) }
+              onChange={ handleChange }
               options={ options }
             />  
             <button type="submit" className="w-full my-2 py-3 text-white rounded-md  bg-green-800">Login</button>

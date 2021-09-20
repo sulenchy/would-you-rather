@@ -99,6 +99,4 @@ ViewPoll.propTypes = {
   dispatch: PropTypes.func,
 };
 
-
-
 export default connect()(ViewPoll);
